@@ -23,8 +23,8 @@ public class BookController {
         bookService.createTable();
     }
 
-    @GetMapping("/{id}")
-    public Book getBook(@PathVariable String id) {
-        return bookService.getById(id);
+    @GetMapping("/{publisher}")
+    public Book getBook(@PathVariable("publisher") String publisher) {
+        return bookService.findByPublisher(publisher);
     }
 }

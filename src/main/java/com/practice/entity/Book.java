@@ -1,7 +1,6 @@
 package com.practice.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.cassandra.core.cql.Ordering;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -11,21 +10,17 @@ import org.springframework.data.cassandra.core.mapping.Table;
 import java.util.HashSet;
 import java.util.Set;
 
-@Table
+@Table("book_dummy")
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
-    @PrimaryKeyColumn(
-            name = "id",
-            ordinal = 2,
-            type = PrimaryKeyType.CLUSTERED,
-            ordering = Ordering.DESCENDING)
+    @Column
     private String id;
-    @PrimaryKeyColumn(
-            name = "title", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
+    @Column
     private String title;
-    @PrimaryKeyColumn(
-            name = "publisher", ordinal = 1, type = PrimaryKeyType.PARTITIONED)
+    @PrimaryKeyColumn(name = "publisher", ordinal = 0, type = PrimaryKeyType.PARTITIONED)
     private String publisher;
     @Column
     private Set<String> tags = new HashSet<>();
